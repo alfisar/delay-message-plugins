@@ -12,10 +12,10 @@ func NewPublishService(repo domain.PublishRepository) domain.PublishService {
 	}
 }
 
-func (obj *publishServ) Send(exchangeName string, key string, message string) (err error) {
+func (obj *publishServ) Send(exchangeName string, key string, message string, delay int) (err error) {
 	publishData := domain.Publish{
 		ExchangeName: exchangeName,
 		Key:          key,
 	}
-	return obj.repo.Send(publishData, message)
+	return obj.repo.Send(publishData, message, delay)
 }

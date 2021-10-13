@@ -14,6 +14,11 @@ type Config struct {
 	AMQP_Pass   string `mapstructure:"AMQP_PASSWORD"`
 	AMQP_Host   string `mapstructure:"AMQP_HOST"`
 	AMQP_Port   string `mapstructure:"AMQP_PORT"`
+
+	EMAIL_Host     string `mapstructure:"CONFIG_SMTP_HOST"`
+	EMAIL_Port     string `mapstructure:"CONFIG_SMTP_PORT"`
+	EMAIL_Email    string `mapstructure:"CONFIG_SMTP_EMAIL"`
+	EMAIL_Password string `mapstructure:"CONFIG_SMTP_PASSWORD"`
 }
 
 func LoadConfig(Dir string) (cfg *Config) {

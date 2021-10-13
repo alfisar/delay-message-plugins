@@ -24,11 +24,11 @@ type Publish struct {
 }
 
 type PublishRepository interface {
-	Send(data Publish, message string) (err error)
+	Send(data Publish, message string, delay int) (err error)
 }
 
 type PublishService interface {
-	Send(ExchangeName string, Key string, message string) (err error)
+	Send(ExchangeName string, Key string, message string, delay int) (err error)
 }
 
 type Consume struct {

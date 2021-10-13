@@ -17,10 +17,10 @@ func NewPublishRepository(ch *amqp.Channel) domain.PublishRepository {
 	}
 }
 
-func (obj *publishRepo) Send(data domain.Publish, message string) (err error) {
+func (obj *publishRepo) Send(data domain.Publish, message string, delay int) (err error) {
 
 	table := amqp.Table{
-		"x-delay": 30000,
+		"x-delay": delay,
 	}
 	err = obj.ch.Publish(
 		data.ExchangeName,

@@ -2,12 +2,17 @@ package main
 
 import (
 	config "delay-message-plugins/config"
+	"delay-message-plugins/helper"
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	_rabbitRepo "delay-message-plugins/rabbit/repository"
 	_rabbitServ "delay-message-plugins/rabbit/service"
+
+	_emailRepo "delay-message-plugins/email/repository"
+	_emailServ "delay-message-plugins/email/service"
 )
 
 var (
@@ -28,10 +33,20 @@ func main() {
 	repoPublish := _rabbitRepo.NewPublishRepository(broker.Ch)
 	servPublish := _rabbitServ.NewPublishService(repoPublish)
 
-	err = servPublish.Send(broker.ExchangeName, broker.KeyRoute, "coba ya 2 heheh")
-	if err != nil {
-		log.Fatalln(err)
-		return
+	for i := 0; i < 3; i++ {
+		var delay int
+		if i == 0 {
+			delay = 300000
+		} else if i == 1 {
+			delay = 420000
+		} else {
+			delay = 600000
+		}
+		err = servPublish.Send(broker.ExchangeName, broker.KeyRoute, "coba ya 2 heheh", delay)
+		if err != nil {
+			log.Fatalln(err)
+			return
+		}
 	}
 
 	repoConsume := _rabbitRepo.NewConsumeRepository(broker.Ch)
@@ -44,9 +59,18 @@ func main() {
 
 	forever := make(chan bool)
 
+	emailData := helper.CofigEmail(*cfg)
+	repoEmail := _emailRepo.NewEmailRepository(emailData)
+	servEmail := _emailServ.NewEmilService(repoEmail)
+	expiredAt := time.Now().Add(time.Minute * 15)
 	go func() {
 		for d := range msgs {
-			fmt.Println("Receive Data : " + string(d.Body))
+			fmt.Println(string(d.Body))
+			err := servEmail.SendEmail(expiredAt)
+			if err != nil {
+				fmt.Println(err)
+			}
+
 		}
 	}()
 
