@@ -11,31 +11,60 @@ Please set environment variable for setup this aplication
 <!DOCTYPE html>
 <html>
 <body>
-  
+ 
+ <header>
+   Config RabbitMQ
+  <header>
  <table>
  	<tr>
  		<td> Name</td>
  		<td> Example Value</td>
  	</tr>
  	<tr>
- 		<td> Driver </td>
+ 		<td> AMQP_DRIVER </td>
  		<td> amqp </td>
  	</tr>
   <tr>
- 		<td> User </td>
+ 		<td> AMQP_USER </td>
  		<td> admin </td>
  	</tr>
   <tr>
- 		<td> Password </td>
+ 		<td> AMQP_PASSWORD </td>
  		<td> admin </td>
  	</tr>
   <tr>
- 		<td> Host </td>
+ 		<td> AMQP_HOST </td>
  		<td> localhost </td>
  	</tr>
    <tr>
- 		<td> Port </td>
+ 		<td> AMQP_PORT </td>
  		<td> 5672 </td>
+ 	</tr>
+ </table>
+    
+ <header>
+   Config SMTP Gmail
+  <header>
+ <table>
+ 	<tr>
+ 		<td> Name</td>
+ 		<td> Example Value</td>
+ 	</tr>
+ 	<tr>
+ 		<td> CONFIG_SMTP_HOST </td>
+ 		<td> smtp.gmail.com </td>
+ 	</tr>
+  <tr>
+ 		<td> CONFIG_SMTP_PORT </td>
+ 		<td> 587 </td>
+ 	</tr>
+  <tr>
+ 		<td> CONFIG_SMTP_EMAIL </td>
+ 		<td> Your Email </td>
+ 	</tr>
+  <tr>
+ 		<td> CONFIG_SMTP_PASSWORD </td>
+ 		<td> Your Password Email </td>
  	</tr>
  </table>
 
