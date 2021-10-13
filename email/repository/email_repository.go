@@ -28,7 +28,7 @@ func (repo *repository) SendEmail(expiredAt time.Time) (err error) {
 	port, _ := strconv.Atoi(repo.email.Port)
 	mailer := gomail.NewMessage()
 	mailer.SetHeader("From", repo.email.Email)
-	mailer.SetHeader("To", "alfisar417@gmail.com")
+	mailer.SetHeader("To", "youremail@gmail.com")
 	mailer.SetHeader("subject", "Email Test Scheduler Rabbitmq")
 	mailer.SetBody("text/html", bodyEmail)
 

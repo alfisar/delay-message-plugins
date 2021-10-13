@@ -34,6 +34,7 @@ func main() {
 	servPublish := _rabbitServ.NewPublishService(repoPublish)
 
 	for i := 0; i < 3; i++ {
+		// delay in milisecond
 		var delay int
 		if i == 0 {
 			delay = 300000
